@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "laxlee"
+  },
+  "targets": {
+    "laxlee": {
+      "hosting": {
+        "www": [
+          "gontrel"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}
