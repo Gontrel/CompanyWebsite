@@ -1,0 +1,101 @@
+
+
+.webPage {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    height: 100vh;
+}
+
+.webPageText{
+    flex: 1;
+    padding: 230px 50px 0 50px;
+}
+
+.rightImage {
+    flex: 1;
+    /* make the image take up half the width */
+    object-fit: cover;
+    /* make the image cover its container */
+}
+
+.roundedButton {
+    position: absolute;
+    background-color: white;
+    color: darkgray;
+    border-radius: 20px;
+    border: 2px solid black;
+    padding: 10px 20px;
+    top: 140px;
+    left: 50px;
+}
+
+.submitButton {
+    position: absolute;
+    background-color: white;
+    color: darkgray;
+    border-radius: 20px;
+    border: 2px solid black;
+    padding: 10px 20px;
+
+}
+
+.pageLayout {
+    display: flex;
+}
+
+.content {
+    flex: 1;
+}
+
+.rightImage {
+    flex: 1;
+    object-fit: cover;
+    height: 100vh;
+    /* adjust as needed */
+}
+
+.logo {
+    position: absolute;
+    top: 20px;
+    left: 60px;
+    height: 30px;
+    width: 75px;
+}
+
+.blueText {
+    color: blue;
+}
+
+/* Reset default styles */
+body, h1, p, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set font and background color */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+/* Style headings */
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+h6 {
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Style paragraphs */
+p {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+}
