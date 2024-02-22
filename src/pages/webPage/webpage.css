@@ -29,14 +29,39 @@
     left: 50px;
 }
 
-.submitButton {
-    position: absolute;
+.emailInput {
+    flex: 1;
+    border: none;
+    padding: 0 10px;
+    outline: none;
     background-color: white;
-    color: darkgray;
-    border-radius: 20px;
-    border: 2px solid black;
-    padding: 10px 20px;
+    color: rgb(82, 81, 81);
+}
 
+.inputWithButton {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 10px 20px;
+}
+
+.inputWithButton .submitButton {
+    border-radius: 20px;
+    border: 2px solid;
+    background-color: blue;
+    color: white;
+    padding: 3px 7px;
+}
+
+.inputWithButton input {
+    flex: 1;
+    border: none;
+    padding: 0 10px;
+    outline: none;
+    background-color: white;
+    /* adjust padding as needed */
 }
 
 .pageLayout {
