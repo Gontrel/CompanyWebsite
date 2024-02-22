@@ -3,19 +3,22 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faFire } from "@fortawesome/free-solid-svg-icons"; // Import the necessary icon
 import "./webpage.css";
 import { handleFirestore } from "../../lib/firebase";
-import { doc } from "firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 
 const Webpage: React.FC = () => {
   function handleSubmit() {
     const emailInput = document.querySelector(
       ".emailInput"
-    ) as HTMLInputElement | null;
+    ) as HTMLInputElement;
 
     if (emailInput) {
       const email = emailInput.value;
-      doc(handleFirestore(), "email", email);
+      const emailsCollection = collection(handleFirestore(), "emails");
+      addDoc(emailsCollection, { email })
+        .then(() => console.log("Email added successfully"))
+        .catch((error) => console.error("Error adding email: ", error));
     } else {
-      alert("Email field is emapty.");
+      alert("Email field is empty.");
     }
   }
 
