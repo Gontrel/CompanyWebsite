@@ -53,6 +53,10 @@
     background-color: blue;
     color: white;
     padding: 3px 7px;
+    &:disabled {
+        background-color: grey;
+        pointer-events: none;
+    }
 }
 
 .inputWithButton input {
@@ -87,20 +91,12 @@
     width: 75px;
 }
 
-.blueText {
-    color: blue;
-}
+.blueText
 
 /* Reset default styles */
 body, h1, p, h6 {
     margin: 0;
     padding: 0;
-}
-
-/* Set font and background color */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
 }
 
 /* Style headings */
@@ -123,4 +119,17 @@ p {
     font-size: 16px;
     color: #666;
     margin-bottom: 20px;
+}
+
+.errorText {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-inline-start: 10px;
+}
+
+.successText {
+    color: green;
+    font-size: 14px;
+    margin-top: 5px;
 }
