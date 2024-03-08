@@ -9,9 +9,9 @@ import Instagram from '/assets/icons/Instagram.png';
 import Snapchat from '/assets/icons/Snapchat.png';
 import Facebook from '/assets/icons/Facebook.png';
 import Twitter from '/assets/icons/Twitter.png';
-import './webpage.scss';
+import './LandingPage.scss';
 
-const Webpage: React.FC = () => {
+const LandingPage: React.FC = () => {
     const [email, setEmail] = useState('');
     const [emailErrorText, setEmailErrorText] = useState('');
     const [emailValidText, setEmailValidText] = useState('');
@@ -245,4 +245,4 @@ const Webpage: React.FC = () => {
     );
 };
 
-export default Webpage;
+export default LandingPage;

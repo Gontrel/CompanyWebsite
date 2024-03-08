@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Webpage from './pages/webPage/webpage';
+import LandingPage from './pages/LandingPage/LandingPage';
 import { setupFirebase } from './lib/firebase';
 setupFirebase();
 
@@ -7,7 +7,7 @@ function App() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Webpage />}></Route>
+                <Route path="/" element={<LandingPage />}></Route>
             </Routes>
         </BrowserRouter>
     );
