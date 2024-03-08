@@ -1,135 +1,118 @@
+#landingPage {
+    background-color: #f7f8fc;
+    background-image: url('/assets/images/MobileLandingBackground.png');
+    background-size: auto 620px;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    font-weight: 600;
 
-
-.webPage {
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    height: 100vh;
-}
-
-.webPageText{
-    flex: 1;
-    padding: 230px 50px 0 50px;
-}
-
-.rightImage {
-    flex: 1;
-    /* make the image take up half the width */
-    object-fit: cover;
-    /* make the image cover its container */
-}
-
-.roundedButton {
-    position: absolute;
-    background-color: white;
-    color: darkgray;
-    border-radius: 20px;
-    border: 2px solid black;
-    padding: 10px 20px;
-    top: 140px;
-    left: 50px;
-}
-
-.emailInput {
-    flex: 1;
-    border: none;
-    padding: 0 10px;
-    outline: none;
-    background-color: white;
-    color: rgb(82, 81, 81);
-}
-
-.inputWithButton {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 2px solid black;
-    border-radius: 20px;
-    padding: 10px 20px;
-}
-
-.inputWithButton .submitButton {
-    border-radius: 20px;
-    border: 2px solid;
-    background-color: blue;
-    color: white;
-    padding: 3px 7px;
-    &:disabled {
-        background-color: grey;
-        pointer-events: none;
+    @media (screen(sm)) {
+        background-image: url('/assets/images/LandingBackground.png');
+        background-size:auto 100%;
+        background-position: 478px 0px;
     }
-}
 
-.inputWithButton input {
-    flex: 1;
-    border: none;
-    padding: 0 10px;
-    outline: none;
-    background-color: white;
-    /* adjust padding as needed */
-}
+    #hero--content {
+        max-width: 486px;
 
-.pageLayout {
-    display: flex;
-}
+        .coming-soon--pill {
+            background-color: #f7f8fc;
+            border-radius: 32px;
+            border-width: 1px;
+            border-color: #e0e0e0;
+            color: #808098;
+            height: 40px;
+            user-select: none;
+            pointer-events: none;
 
-.content {
-    flex: 1;
-}
 
-.rightImage {
-    flex: 1;
-    object-fit: cover;
-    height: 100vh;
-    /* adjust as needed */
-}
+            .coming-soon--text {
+                font-size: 14px;
 
-.logo {
-    position: absolute;
-    top: 20px;
-    left: 60px;
-    height: 30px;
-    width: 75px;
-}
+                @media (screen(sm)) {
+                    font-size: 16px;
+                }
+            }
 
-.blueText
+            .coming-soon--emoji {
+                font-size: 20px;
+            }
+        }
 
-/* Reset default styles */
-body, h1, p, h6 {
-    margin: 0;
-    padding: 0;
-}
+        .hero--text {
+            color: #000000;
+        }
 
-/* Style headings */
-h1 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-}
+        .hero--form {
+            .input--container {
+                background-color: #f7f8fc;
+                border-radius: 44px;
+                border-width: 1px;
+                border-color: #c1c4fe;
+                color: #76768f;
 
-h6 {
-    font-size: 15px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
-}
+                &.invalid {
+                    border-color: #ed0000;
+                }
 
-/* Style paragraphs */
-p {
-    font-size: 16px;
-    color: #666;
-    margin-bottom: 20px;
-}
+                &.valid {
+                    border-color: #008a04;
+                }
 
-.errorText {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-    margin-inline-start: 10px;
-}
+                .email--input {
+                    font-size: 16px;
+                    font-weight: 400;
+                    color: #000000;
+                    background: transparent;
+                    border: none;
+                    outline: none;
 
-.successText {
-    color: green;
-    font-size: 14px;
-    margin-top: 5px;
+                    &::placeholder {
+                        background-color: transparent;
+                        color: #76768f;
+
+                    }
+                }
+
+                .submit--button {
+                    font-family: Figtree;
+                    font-size: 14px;
+                    font-weight: 500;
+                    line-height: 20px;
+                    border-radius: 44px;
+                    width: auto;
+                    border: none;
+                    outline: none;
+
+                    &:disabled {
+                        background-color: #549FF7;
+                        color: #ffffff;
+                    }
+                }
+            }
+            .input-helper--text {
+                font-family: Figtree;
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 1.2;
+
+                .error--text {
+                    color: #ed0000;
+                }
+
+                .valid--text {
+                    color: #008a04;
+                }
+            }
+        }
+    }
+
+    .hero--footer {
+        height:  554px;
+
+        @media (screen(sm)) {
+            height: auto;
+        }
+
+    }
 }
