@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import HelperText from '../../components/HelperText/HelperText';
 import { handleFirestore } from '../../lib/firebase';
 import { collection, doc, setDoc } from 'firebase/firestore';
 import Loader from '/assets/icons/Loader.png';
@@ -13,37 +14,47 @@ import './LandingPage.scss';
 
 const LandingPage: React.FC = () => {
     const [email, setEmail] = useState('');
-    const [emailErrorText, setEmailErrorText] = useState('');
-    const [emailValidText, setEmailValidText] = useState('');
+    const [errorHelperText, setErrorHelperText] = useState('');
+    const [validHelperText, setValidHelperText] = useState('');
+    const [submitHelperText, setSubmitHelperText] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [submitText, setSubmitText] = useState('');
-    const emailInput = React.useRef<HTMLInputElement>(null);
+    const emailInput = useRef<HTMLInputElement>(null);
+    const debounceTimeout = useRef<NodeJS.Timeout | null>(null);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (email && !isLoading && emailValidText.length > 0) {
+
+        if (email && !isLoading && validHelperText.length > 0) {
             const waitingListCollection = collection(
                 handleFirestore(),
                 'waitingList'
             );
+
             try {
                 setIsLoading(true);
-                await setDoc(doc(waitingListCollection, email), {
-                    email
+                const trimmedEmail = email.trim().toLowerCase();
+                await setDoc(doc(waitingListCollection, trimmedEmail), {
+                    email: trimmedEmail
                 });
+
+                console.log('Email added to waiting list!');
+
                 setEmail('');
                 setIsLoading(false);
-                console.log('Email added to waiting list!');
-                setSubmitText('Email added to waiting list!');
+                setSubmitHelperText('Email added to waiting list!');
+
                 emailInput.current?.focus();
             } catch (error) {
                 console.error('Error adding email: ', error);
-                setEmailErrorText('Error adding email.');
+
+                setIsLoading(false);
+                setErrorHelperText('');
+                setSubmitHelperText('Error adding email!');
             } finally {
                 setTimeout(() => {
-                    setEmailValidText('');
-                    setEmailErrorText('');
-                    setSubmitText('');
+                    setErrorHelperText(text => (text.length > 0 ? text : ''));
+                    setValidHelperText(text => (text.length > 0 ? text : ''));
+                    setSubmitHelperText('');
                 }, 5000);
             }
         }
@@ -55,20 +66,29 @@ const LandingPage: React.FC = () => {
 
     // email validation
     useEffect(() => {
-        if (email) {
-            // check if email is valid
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                setEmailErrorText('Please enter a valid email!');
-                setEmailValidText('');
-            } else {
-                setEmailErrorText('');
-                setEmailValidText('Valid email!');
-            }
-        } else {
-            setEmailErrorText('');
-            setEmailValidText('');
+        // Clear the previous timeout if it exists
+        if (debounceTimeout.current) {
+            clearTimeout(debounceTimeout.current);
         }
+
+        // Set a new timeout
+        debounceTimeout.current = setTimeout(() => {
+            if (email) {
+                // check if email is valid
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                if (!emailRegex.test(email)) {
+                    setValidHelperText('');
+                    setErrorHelperText('Please enter a valid email!');
+                } else {
+                    setErrorHelperText('');
+                    setValidHelperText('Valid email!');
+                }
+            } else {
+                setErrorHelperText('');
+                setValidHelperText('');
+            }
+        }, 1000); // 1 second delay
     }, [email, isLoading]);
 
     return (
@@ -83,7 +103,7 @@ const LandingPage: React.FC = () => {
                 </div>
                 <div id="hero--content" className="flex items-start ">
                     <div className="flex flex-col gap-y-4 content--section">
-                        <div className="flex mb-6 gap-x-3 coming-soon--section">
+                        <div className="flex sm:mb-6 gap-x-3 coming-soon--section">
                             <div className="flex items-center justify-center gap-3 px-6 py-2 border-solid pointer-events-none select-none coming-soon--pill">
                                 <span className="coming-soon--text">
                                     App coming soon!
@@ -99,7 +119,7 @@ const LandingPage: React.FC = () => {
                                 />
                             </div>
                         </div>
-                        <div className="flex flex-col max-w-sm sm:max-w-md hero--text gap-y-4">
+                        <div className="flex flex-col max-w-sm sm:max-w-md hero--text gap-y-4 sm:gap-y-5">
                             <h1>
                                 Discover,
                                 <br />
@@ -119,7 +139,7 @@ const LandingPage: React.FC = () => {
                             </p>
                         </div>
                         <form
-                            className="flex flex-col max-w-sm mt-8 sm:max-w-md hero--form"
+                            className="flex flex-col max-w-sm mt-4 sm:mt-8 sm:max-w-md hero--form"
                             onSubmit={handleSubmit}
                         >
                             <h6>
@@ -128,14 +148,14 @@ const LandingPage: React.FC = () => {
                             <div
                                 className={`input--container p-2 flex justify-between gap-x-8 mt-4 mb-1
                                     ${
-                                        emailErrorText.length > 0
-                                            ? 'invalid'
+                                        validHelperText.length > 0 ||
+                                        submitHelperText.length > 0
+                                            ? 'valid'
                                             : ''
                                     }
                                     ${
-                                        emailValidText.length > 0 ||
-                                        submitText.length > 0
-                                            ? 'valid'
+                                        errorHelperText.length > 0
+                                            ? 'invalid'
                                             : ''
                                     }
                                     `}
@@ -153,28 +173,18 @@ const LandingPage: React.FC = () => {
                                         ref={emailInput}
                                     />
                                     <div className="input-helper--text min-h-4">
-                                        {emailErrorText.length > 0 && (
-                                            <span className="error--text">
-                                                {emailErrorText}
-                                            </span>
-                                        )}
-                                        {emailValidText.length > 0 && (
-                                            <span className="valid--text">
-                                                {emailValidText}
-                                            </span>
-                                        )}
-                                        {submitText.length > 0 && (
-                                            <span className="valid--text">
-                                                {submitText}
-                                            </span>
-                                        )}
+                                        <HelperText
+                                            errorText={errorHelperText}
+                                            validText={validHelperText}
+                                            submitText={submitHelperText}
+                                        />
                                     </div>
                                 </div>
                                 <button
                                     className="flex items-center justify-center h-12 px-6 py-4 text-white rounded-md min-w-24 submit--button bg-gontrel-blue"
                                     type="submit"
                                     disabled={
-                                        emailErrorText.length > 0 ||
+                                        errorHelperText.length > 0 ||
                                         email.length === 0
                                     }
                                 >
