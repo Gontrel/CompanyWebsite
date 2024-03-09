@@ -140,7 +140,7 @@ const LandingPage: React.FC = () => {
                                     }
                                     `}
                             >
-                                <div className="flex flex-col flex-grow pt-3 ps-8">
+                                <div className="flex flex-col flex-grow pt-2 ps-8 input-container--text">
                                     <input
                                         type="email"
                                         className="email--input"
@@ -152,7 +152,7 @@ const LandingPage: React.FC = () => {
                                         }
                                         ref={emailInput}
                                     />
-                                    <div className="input-helper--text">
+                                    <div className="input-helper--text min-h-4">
                                         {emailErrorText.length > 0 && (
                                             <span className="error--text">
                                                 {emailErrorText}
@@ -171,7 +171,7 @@ const LandingPage: React.FC = () => {
                                     </div>
                                 </div>
                                 <button
-                                    className="flex justify-center h-12 px-6 py-4 text-white rounded-md min-w-24 submit--button bg-gontrel-blue"
+                                    className="flex items-center justify-center h-12 px-6 py-4 text-white rounded-md min-w-24 submit--button bg-gontrel-blue"
                                     type="submit"
                                     disabled={
                                         emailErrorText.length > 0 ||
