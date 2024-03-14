@@ -71,7 +71,7 @@ body {
         font-size: 40px;
         font-weight: 700;
 
-        @media (screen(sm)) {
+        @media (screen(md)) {
             font-size: 52px;
         }
     }
@@ -82,7 +82,7 @@ body {
         font-weight: 500;
         line-height: 1.5;
 
-        @media (screen(sm)) {
+        @media (screen(md)) {
             font-size: 16px;
         }
     }
@@ -94,7 +94,7 @@ body {
         line-height: 1.5;
         color: #525252;
 
-        @media (screen(sm)) {
+        @media (screen(md)) {
             font-size: 18px;
         }
     }

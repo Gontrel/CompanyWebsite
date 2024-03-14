@@ -1,112 +1,122 @@
 #landingPage {
     background-color: #f7f8fc;
-    background-image: url('/assets/images/MobileLandingBackground.png');
-    background-size: auto 620px;
-    background-repeat: no-repeat;
-    background-position: bottom center;
     font-weight: 600;
 
-    @media (screen(sm)) {
-        background-image: url('/assets/images/LandingBackground.png');
-        background-size: auto 100%;
-        background-position: 478px 0px;
-    }
+    .landing-page--left {
+        background-image: url('/assets/images/MobileLandingBackground.png');
+        background-size: auto 620px;
+        background-repeat: no-repeat;
+        background-position: bottom center;
 
-    #hero--content {
-        max-width: 345px;
-
-        @media (screen(sm)) {
-            max-width: 486px;
+        @media (screen(md)) {
+            background-image: url('/assets/images/LandingBackground.png');
+            background-size: auto 100%;
+            background-position: 478px 0px;
         }
 
-        .coming-soon--pill {
-            background-color: #f7f8fc;
-            border-radius: 32px;
-            border-width: 1px;
-            border-color: #e0e0e0;
-            color: #808098;
-            height: 40px;
-            user-select: none;
-            pointer-events: none;
+        @media (screen(2xl)) {
+            background-image: none;
+        }
 
-            .coming-soon--text {
-                font-size: 14px;
+        #hero--content {
+            max-width: 345px;
 
-                @media (screen(sm)) {
-                    font-size: 16px;
-                }
+            @media (screen(md)) {
+                max-width: 486px;
             }
 
-            .coming-soon--emoji {
-                font-size: 20px;
-            }
-        }
-
-        .hero--text {
-            color: #000000;
-        }
-
-        .hero--form {
-            .input--container {
+            .coming-soon--pill {
                 background-color: #f7f8fc;
-                border-radius: 44px;
+                border-radius: 32px;
                 border-width: 1px;
-                border-color: #c1c4fe;
-                color: #76768f;
+                border-color: #e0e0e0;
+                color: #808098;
+                height: 40px;
+                user-select: none;
+                pointer-events: none;
 
-                &.valid {
-                    border-color: #008a04;
-                }
-
-                &.invalid {
-                    border-color: #ed0000;
-                }
-
-
-                .email--input {
-                    font-size: 16px;
-                    font-weight: 400;
-                    color: #000000;
-                    background: transparent;
-                    border: none;
-                    outline: none;
-
-                    &::placeholder {
-                        background-color: transparent;
-                        color: #76768f;
-                    }
-                }
-
-                .submit--button {
-                    font-family: Figtree;
+                .coming-soon--text {
                     font-size: 14px;
-                    font-weight: 500;
-                    border-radius: 44px;
-                    width: auto;
-                    border: none;
-                    outline: none;
 
-                    &:disabled {
-                        background-color: #549ff7;
-                        color: #ffffff;
+                    @media (screen(md)) {
+                        font-size: 16px;
                     }
+                }
+
+                .coming-soon--emoji {
+                    font-size: 20px;
                 }
             }
 
-            .input-helper--text {
-                font-family: Figtree;
-                font-size: 12px;
-                font-weight: 400;
-                line-height: 1.2;
+            .hero--text {
+                color: #000000;
+            }
+
+            .hero--form {
+                .input--container {
+                    background-color: #f7f8fc;
+                    border-radius: 44px;
+                    border-width: 1px;
+                    border-color: #c1c4fe;
+                    color: #76768f;
+
+                    &.valid {
+                        border-color: #008a04;
+                    }
+
+                    &.invalid {
+                        border-color: #ed0000;
+                    }
+
+                    .email--input {
+                        font-size: 16px;
+                        font-weight: 400;
+                        color: #000000;
+                        background: transparent;
+                        border: none;
+                        outline: none;
+
+                        &::placeholder {
+                            background-color: transparent;
+                            color: #76768f;
+                        }
+                    }
+
+                    .submit--button {
+                        font-family: Figtree;
+                        font-size: 14px;
+                        font-weight: 500;
+                        border-radius: 44px;
+                        width: auto;
+                        border: none;
+                        outline: none;
+
+                        &:disabled {
+                            background-color: #549ff7;
+                            color: #ffffff;
+                        }
+                    }
+                }
+
+                .input-helper--text {
+                    font-family: Figtree;
+                    font-size: 12px;
+                    font-weight: 400;
+                    line-height: 1.2;
+                }
+            }
+        }
+
+        .hero--footer {
+            height: 554px;
+
+            @media (screen(md)) {
+                height: auto;
             }
         }
     }
 
-    .hero--footer {
-        height: 554px;
+    .landing-page--right {
 
-        @media (screen(sm)) {
-            height: auto;
-        }
     }
 }
